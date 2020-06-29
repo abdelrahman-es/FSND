@@ -5,7 +5,7 @@ from auth import AuthError, requires_auth
 from flask_cors import CORS
 import random
 
-from models import setup_db, Actor, Movie, Role
+from models import setup_db, Actor, Movie
 
 RECORDS_PER_PAGE = 10
 
@@ -164,7 +164,7 @@ def create_app(test_config=None):
   def add_movie(token):
         data = request.get_json()
 
-        new_title  = data.get('title ', None)
+        new_title  = data.get('title', None)
         new_release_date = data.get('release_date', None)
         
 
@@ -292,8 +292,7 @@ def create_app(test_config=None):
   def authentification_failed(AuthError): 
       return jsonify({
                       "success": False, 
-                      "error": AuthError.status_code,
-                      "message": AuthError.error['description']
+                      "error": AuthError.status_code
                       }), AuthError.status_code     
   return app
 
