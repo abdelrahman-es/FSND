@@ -4,7 +4,6 @@ from flask import Flask, request, abort, jsonify
 from auth import AuthError, requires_auth
 from flask_cors import CORS
 import random
-
 from models import setup_db, Actor, Movie
 
 RECORDS_PER_PAGE = 10
@@ -195,12 +194,13 @@ def create_app(test_config=None):
   def edit_actors(token, actor_id):   
   
     body = request.get_json()
+    
+    if not body:
+      abort(400)
 
     if not actor_id:
       abort(400)
 
-    if not body:
-      abort(400)
 
     update_actor = Actor.query.filter(Actor.id == actor_id).one_or_none()
     if not update_actor:
@@ -228,11 +228,10 @@ def create_app(test_config=None):
   def edit_movies(token, movie_id):  
   
     body = request.get_json()
-
-    if not movie_id:
+    if not body:
       abort(400)
 
-    if not body:
+    if not movie_id:
       abort(400)
 
     update_movie = Movie.query.filter(Movie.id == movie_id).one_or_none()
@@ -292,7 +291,8 @@ def create_app(test_config=None):
   def authentification_failed(AuthError): 
       return jsonify({
                       "success": False, 
-                      "error": AuthError.status_code
+                      "error": AuthError.status_code,
+                      "message": AuthError.error['description']
                       }), AuthError.status_code     
   return app
 

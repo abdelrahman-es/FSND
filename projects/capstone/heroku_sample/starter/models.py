@@ -3,12 +3,11 @@ from flask_sqlalchemy import SQLAlchemy
 import json
 
 
-database_name = "capstone"
-database_path = "postgres://{}:{}@{}/{}".format(
-   'postgres', 'postgres', 'localhost:5432', database_name)
+#database_name = "capstone"
+#database_path = "postgres://{}:{}@{}/{}".format('postgres', 'postgres', 'localhost:5432', database_name)
 
 #database_path = os.environ['DATABASE_URL']
-#database_path = "postgres://saqmdnbucthosu:5e6ec82b00af5309ba7c19ccc534a2de33673b4fbe7304fbe467714e2be777d6@ec2-52-0-155-79.compute-1.amazonaws.com:5432/d3nuuppk8gou7m"
+database_path = "postgres://saqmdnbucthosu:5e6ec82b00af5309ba7c19ccc534a2de33673b4fbe7304fbe467714e2be777d6@ec2-52-0-155-79.compute-1.amazonaws.com:5432/d3nuuppk8gou7m"
 
 
 db = SQLAlchemy()
@@ -25,15 +24,6 @@ def setup_db(app, database_path=database_path):
    # db.create_all()
 
 
-
-# association table
-
-#Role = db.Table('Role', db.Model.metadata,
-  #  db.Column('Movie_id', db.Integer, db.ForeignKey('movies.id')),
-   # db.Column('Actor_id', db.Integer, db.ForeignKey('actors.id')),
-   # db.Column('actor_role', db.String)
-#)
-
 # Movie Class
 
 class Movie(db.Model):  
@@ -42,7 +32,6 @@ class Movie(db.Model):
   id = Column(Integer, primary_key=True)
   title = Column(String)
   release_date = Column(Date)
-  #actors = db.relationship('Actor', secondary=Role, backref=db.backref('roles', lazy='joined'))
 
   def __init__(self, title, release_date) :
     self.title = title
