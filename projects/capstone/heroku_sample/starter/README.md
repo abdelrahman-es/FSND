@@ -1,5 +1,11 @@
 Capstone Project for FSND Full Stack Developer Nanodegree
 
+### Base URL
+https://abdelrahmanproj.herokuapp.com
+
+### Motivations
+final project of full stack nanodegree ipmroves my skills and teaches lots of topics
+
 ## Getting Started
 
 ### Installing Dependencies
@@ -109,8 +115,10 @@ Creating company that is responsible for creating movies and managing and assign
 ### End Points
 
 GET /actors
+Request Headers: None
+Requires permission: read:actors
 Using Postman with sample below and curl
-Sample: https://abdelrahmanproj.herokuapp.com/actors
+Sample: curl -X GET https://abdelrahmanproj.herokuapp.com/actors
 
    {
     "actors": [
@@ -124,8 +132,10 @@ Sample: https://abdelrahmanproj.herokuapp.com/actors
     "success": true
 }
 GET /movies
+Request Headers: None
+Requires permission: read:movies
 Using Postman with sample below
-Sample: https://abdelrahmanproj.herokuapp.com/movies
+Sample: curl -X GET https://abdelrahmanproj.herokuapp.com/movies
 
    {
     "movies": [
@@ -139,8 +149,11 @@ Sample: https://abdelrahmanproj.herokuapp.com/movies
 }
 
 DELETE /actors/actor_id
+Request Arguments: integer id
+Request Headers: None
+Requires permission: delete:actors
 Using Postman with sample below
-Sample: https://abdelrahmanproj.herokuapp.com/actors/2
+Sample: curl -X DELETE https://abdelrahmanproj.herokuapp.com/actors/2
 
     {
     "deleted": 2,
@@ -148,8 +161,11 @@ Sample: https://abdelrahmanproj.herokuapp.com/actors/2
 }
 
 DELETE /movies/movie_id
+Request Arguments: integer id
+Request Headers: None
+Requires permission: delete:movies
 Using Postman with sample below
-Sample: https://abdelrahmanproj.herokuapp.com/actors/1
+Sample: curl -X DELETE https://abdelrahmanproj.herokuapp.com/actors/1
 
   {
     "deleted": 1,
@@ -158,8 +174,11 @@ Sample: https://abdelrahmanproj.herokuapp.com/actors/1
 
 
 POST /actors
+Request Arguments: None
+Request Headers: (application/json) string name - integer age - string gender
+Requires permission: create:actors
 Using Postman with sample below
-Sample: https://abdelrahmanproj.herokuapp.com/actors
+Sample: curl -X POST https://abdelrahmanproj.herokuapp.com/actors
 
     {
     "actor_id": 3,
@@ -172,8 +191,11 @@ Sample: https://abdelrahmanproj.herokuapp.com/actors
 }
 
 POST /movies
+Request Arguments: None
+Request Headers: (application/json) string title - date release_date
+Requires permission: create:movies
 Using Postman with sample below
-Sample: https://abdelrahmanproj.herokuapp.com/movies
+Sample: curl -X POST https://abdelrahmanproj.herokuapp.com/movies
 
     {
     "movie_id": 1,
@@ -185,8 +207,11 @@ Sample: https://abdelrahmanproj.herokuapp.com/movies
 }
 
 PATCH /actors/actor_id
+Request Arguments: integer id
+Request Headers: (application/json)  string name - integer age - string gender
+Requires permission: edit:actors
 Using Postman with sample below
-Sample: https://abdelrahmanproj.herokuapp.com/actors/3
+Sample: curl -X PATCH https://abdelrahmanproj.herokuapp.com/actors/3
 
     {
     "actor": [
@@ -201,8 +226,11 @@ Sample: https://abdelrahmanproj.herokuapp.com/actors/3
     "updated": 3
 }
 PATCH /movies/movie_id
+Request Arguments: integer id
+Request Headers: (application/json)  string title - date release_date
+Requires permission: edit:movies
 Using Postman with sample below
-Sample: https://abdelrahmanproj.herokuapp.com/movies/1
+Sample: curl -X PATCH https://abdelrahmanproj.herokuapp.com/movies/1
 
     {
     "movie": [
